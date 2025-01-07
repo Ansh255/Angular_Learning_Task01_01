@@ -1,0 +1,3 @@
+<h1>User Management</h1>
+<app-user-detail [user]="currentUser" (userUpdated)="handleUserUpdate($event)"></app-user-detail>
+<p>Updated User Info: {{ updatedUser | json }}</p>
