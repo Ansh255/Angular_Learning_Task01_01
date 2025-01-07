@@ -6,7 +6,21 @@ import { Component, EventEmitter, HostBinding, HostListener, Input, Output, Simp
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent {
-  @Input() user!: { name: string; email: string }; // Input property to receive user data
+  //initialize the object type 
+  private _user!: {name: string ; email : string}
+
+  @Input()
+  set user(value: { name: string; email: string }) {
+    this._user = value;
+    // Additional logic can be added here if needed
+    console.log('User set:', this._user);
+  }
+
+  get user(): { name: string; email: string } {
+    return this._user;
+  }
+
+
   @Output() userUpdated = new EventEmitter<{ name: string; email: string }>(); // Output property to emit user updates
 
   private originalUser!: { name: string; email: string };
@@ -40,7 +54,7 @@ export class UserDetailComponent {
   }
 
   @HostListener('mouseenter') onMouseEnter() {
-    this.border = '2px solid blue'; // Change border color on mouse enter
+    this.border = '6px solid blue'; // Change border color on mouse enter
   }
 
   @HostListener('mouseleave') onMouseLeave() {
